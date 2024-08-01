@@ -1,4 +1,4 @@
-#dirinit
+# dirinit
 
  is a versatile command-line tool that creates directory structures from tree-like, indented, or path text representations.
 
