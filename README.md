@@ -10,7 +10,7 @@ dirinit is a versatile command-line tool that creates directory structures from 
 ### Using Homebrew (recommended for macOS users)
 
 ```bash
-brew tap yourusername/dirinit
+brew tap bendemonium/dirinit
 brew install dirinit
 ```
 
