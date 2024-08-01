@@ -94,7 +94,3 @@ dirinit will automatically attempt to install its dependencies:
 - On Linux: It uses `apt-get` or `yum` to install `whiptail`.
 
 If the automatic installation fails, you may need to install these dependencies manually.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
