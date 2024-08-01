@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+create_structure() {
+    local input="$1"
+    local current_path=""
+    local prev_depth=-1
+    local format=""
+
+    while IFS= read -r line; do
+        # Skip empty lines
+        [ -z "$line" ] && continue
+
+        # Detect format if not already set
+        if [ -z "$format" ]; then
+            if [[ "$line" =~ ^[│├└] ]]; then
+                format="tree"
+            else
+                format="indent"
+            fi
+        fi
+
+        case "$format" in
+            "tree")
+                # Remove leading spaces and │
+                trimmed_line=$(echo "$line" | sed 's/^[│ ]*//')
+                # Calculate depth based on the number of leading characters
+                depth=$(( (${#line} - ${#trimmed_line}) / 2 ))
+                # Extract the item name
+                item=$(echo "$trimmed_line" | sed 's/^[├└]── //')
+                ;;
+            "indent")
+                # Remove leading spaces
+                trimmed_line=$(echo "$line" | sed 's/^[[:space:]]*//')
+                # Calculate depth based on the number of leading spaces
+                depth=$(( (${#line} - ${#trimmed_line}) / 2 ))
+                item="$trimmed_line"
+                ;;
+        esac
+
+        if [ $depth -eq 0 ]; then
+            current_path="$item"
+        else
+            if [ $depth -lt $prev_depth ]; then
+                for ((i=0; i<(prev_depth-depth); i++)); do
+                    current_path=$(dirname "$current_path")
+                done
+            elif [ $depth -eq $prev_depth ]; then
+                current_path=$(dirname "$current_path")
+            fi
+            current_path="$current_path/$item"
+        fi
+
+        if [[ "$item" =~ /$ || ! "$item" =~ \. ]]; then
+            mkdir -p "${current_path%/}"
+        else
+            mkdir -p "$(dirname "$current_path")"
+            touch "$current_path"
+        fi
+
+        prev_depth=$depth
+    done < <(echo "$input")
+
+    echo "Directory structure created successfully."
+}
+
+get_input_macos() {
+    osascript <<EOF
+        tell application "System Events"
+            activate
+            set input to text returned of (display dialog "Paste your directory structure here:" default answer "" buttons {"Cancel", "OK"} default button "OK" with title "Directory Structure Input")
+        end tell
+EOF
+}
+
+get_input_other() {
+    if command -v whiptail &> /dev/null; then
+        whiptail --title "Directory Structure Input" --inputbox "Paste your directory structure here:" 20 60 3>&1 1>&2 2>&3
+    else
+        echo "Please paste your directory structure here (press Ctrl+D when finished):"
+        cat
+    fi
+}
+
+if [ $# -eq 0 ]; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        input=$(get_input_macos)
+    else
+        input=$(get_input_other)
+    fi
+    
+    if [ -z "$input" ]; then
+        echo "Operation cancelled or no input provided."
+        exit 1
+    fi
+
+    create_structure "$input"
+else
+    if [ ! -f "$1" ]; then
+        echo "The specified file does not exist."
+        exit 1
+    fi
+
+    input=$(<"$1")
+    create_structure "$input"
+fi
