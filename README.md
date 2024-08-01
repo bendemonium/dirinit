@@ -2,7 +2,8 @@
 
 dirinit is a versatile command-line tool that creates directory structures from tree-like, indented, or path text representations.
 
-![image](https://github.com/user-attachments/assets/da5db776-25cc-437e-b0c0-17b5baa10638)
+<img width="296" alt="image" src="https://github.com/user-attachments/assets/780e6d73-9ae7-4f64-9d0c-22e0a268c53d">
+
 
 ## Installation
 
