@@ -1,7 +1,7 @@
 class Dirtree < Formula
   desc "Create directory structures from tree-like, indented, or path text representations"
-  homepage "https://github.com/yourusername/dirtree"
-  url "https://github.com/yourusername/dirtree/archive/v1.4.0.tar.gz"
+  homepage "https://github.com/bendemonium/init"
+  url "https://github.com/bendemonium/dirinit/archive/v1.0.0.tar.gz"
   sha256 "THE_SHA256_HASH_OF_YOUR_TARBALL"
   license "MIT"
 

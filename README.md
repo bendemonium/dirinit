@@ -1,4 +1,8 @@
-#dirinit
+# dirinit
+
+dirinit is a versatile command-line tool that creates directory structures from tree-like, indented, or path text representations.
+
+<img width="296" alt="image" src="https://github.com/user-attachments/assets/780e6d73-9ae7-4f64-9d0c-22e0a268c53d">
 
 dirinit is a versatile command-line tool that creates directory structures from tree-like, indented, or path text representations.
 
@@ -84,7 +88,3 @@ dirinit will automatically attempt to install its dependencies:
 - On Linux: It uses `apt-get` or `yum` to install `whiptail`.
 
 If the automatic installation fails, you may need to install these dependencies manually.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
