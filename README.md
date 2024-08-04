@@ -1,21 +1,14 @@
 #dirinit
 
- is a versatile command-line tool that creates directory structures from tree-like, indented, or path text representations.
+dirinit is a versatile command-line tool that creates directory structures from tree-like, indented, or path text representations.
 
 ## Installation
 
-### Using Homebrew (recommended for macOS users)
+### Using Homebrew 
 
 ```bash
-brew tap yourusername/dirinit
-brew install dirinit
+brew install bendemonium/dirinit/dirinit
 ```
-
-### Manual Installation
-
-1. Download the `dirinit` script from the [latest release](https://github.com/yourusername/dirinit/releases/latest).
-2. Make it executable: `chmod +x dirinit`
-3. Move it to a directory in your PATH, e.g., `sudo mv dirinit /usr/local/bin/`
 
 ## Usage
 
