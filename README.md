@@ -8,11 +8,13 @@ dirinit is a versatile command-line tool that creates directory structures from 
 
 ## Installation
 
-### Using Homebrew 
+To install dirinit, simply run:
 
 ```bash
-brew install bendemonium/dirinit/dirinit
+curl -sSL https://raw.githubusercontent.com/bendemonium/dirinit/main/install.sh | bash
 ```
+
+This will download and run the installation script, which will handle all necessary setup.
 
 ## Usage
 
